@@ -5,10 +5,10 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "master"
+        BRANCH_VARIABLE = "tc-m-close-and-reopen-pr"
     }
     parameters {
-        booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
+        booleanParam defaultValue: false, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
     }
     agent {
         label "linux-remote"
@@ -49,6 +49,7 @@ pipeline {
             }
             steps {
                 echo "--> NOT MASTER"
+                echo "--> Close and reopen PR from tc-m-close-and-reopen-pr"
                 sh "ps -ef"
             }
         }
@@ -58,7 +59,7 @@ pipeline {
             }
             steps {
                 echo "--> PR Branch"
-                echo "Change me to test merges"
+                echo "My branch name is tc-m-close-and-reopen-pr"
                 sh "du -h -d 1"
             }
         }
